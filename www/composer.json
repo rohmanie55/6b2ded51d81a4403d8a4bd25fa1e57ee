@@ -1,0 +1,19 @@
+{
+    "name": "rohmanie55/php-mail-management",
+    "description": "PHP Simple Mail Management",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Muhamad Rohmani",
+            "email": "mrohmani96@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Simple\\Mail\\App\\" : "app"
+        }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.7"
+    }
+}
