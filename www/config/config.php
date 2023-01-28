@@ -10,10 +10,15 @@ function config($param=null) : array{
         ],
         'mail' => [
             'host' => getenv('MAIL_HOST'),
-            'auth' => getenv('MAIL_AUTH'),
             'port' => getenv('MAIL_PORT'),
             'username' => getenv('MAIL_USERNAME'),
             'password' => getenv('MAIL_PASSWORD')
+        ],
+        'rabitmq' => [
+            'host' => getenv('RABBITMQ_HOST'),
+            'port' => getenv('RABBITMQ_PORT'),
+            'username' => getenv('RABBITMQ_USER'),
+            'password' => getenv('RABBITMQ_PASSWORD')
         ]
     ];
 

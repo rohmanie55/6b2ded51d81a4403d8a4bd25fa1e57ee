@@ -4,6 +4,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class Mailer{
     protected $mail;
+    protected $view;
 
     public function __construct()
     {
@@ -32,9 +33,30 @@ class Mailer{
         return $this;
     }
 
-    public function body($template, $data){
+    public function body($data, $view=null){
         $this->mail->isHTML(true);
-        $this->mail->Body= 'Hello world!';
+        $viewPath   = __DIR__ . '/../View/mail/'.$view.'.php';
+    
+        ob_start();
+        require(__DIR__ . '/../View/template/header.php');
+        if ($view && file_exists($viewPath)) {
+            require($view);
+        }elseif(is_string($data)){
+            echo $data;
+        }
+        require(__DIR__ . '/../View/template/footer.php');
+
+        $this->mail->Body = ob_get_contents();
+
+        ob_end_clean();
+
+        return $this;
+    }
+
+    public function view($view, $data){
+        $output = "";
+
+
         return $this;
     }
 

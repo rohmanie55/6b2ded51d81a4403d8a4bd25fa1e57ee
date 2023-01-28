@@ -32,12 +32,11 @@ class Controller
 
     protected function input($key=null){
         $input = $_REQUEST;
-
-        if ($_SERVER["CONTENT_TYPE"] == self::DEFAULT_FORMAT) {
+        if (@$_SERVER["CONTENT_TYPE"] == self::DEFAULT_FORMAT) {
             $input = json_decode(file_get_contents('php://input'), true);
         }
 
-        return isset($input[$key]) ? $input[$key] : null;
+        return isset($input[$key]) ? $input[$key] : $input;
     }
 
     private function cors()

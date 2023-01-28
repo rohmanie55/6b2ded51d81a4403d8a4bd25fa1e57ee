@@ -18,6 +18,7 @@ services:
     volumes:
       - ${APP_PATH}/www:/var/www/html
       - ${APP_PATH}/logs/webserver:/var/log/apache:rw${MOUNT_OPTIONS}
+      - ${APP_PATH}/logs/scheduler:/var/log/scheduler:rw${MOUNT_OPTIONS}
     env_file:
       - ${APP_PATH}/.env
     depends_on:

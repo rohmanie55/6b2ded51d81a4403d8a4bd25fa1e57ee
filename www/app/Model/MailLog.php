@@ -8,8 +8,9 @@ class MailLog extends Model
 {
     protected $table = 'mail_logs';
 
-    public function all(){
-        $statement = $this->db->prepare("select * from $this->table");
+    public function paginate($perpage=10){
+        $page = (@$_GET['page']>1) ? (@$_GET['page'] * $perpage) - $perpage : 0;
+        $statement = $this->db->prepare("select * from $this->table limit $perpage offset $page");
         $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_OBJ);
@@ -24,7 +25,7 @@ class MailLog extends Model
 
 
     public function insert($data){
-        $statement = $this->db->prepare("INSERT INTO $this->table(subject, send_to, body) VALUES (:subject, :send_to, :body)");
+        $statement = $this->db->prepare("INSERT INTO $this->table(subject, send_to, body, status) VALUES (:subject, :send_to, :body, :status)");
 
         return $statement->execute($data);
     }

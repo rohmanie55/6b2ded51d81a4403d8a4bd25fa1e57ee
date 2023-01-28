@@ -2,8 +2,9 @@
 
 namespace Simple\Mail\App\Controller;
 
+use Simple\Mail\App\Console\MailHandler;
 use Simple\Mail\App\Core\Controller;
-use Simple\Mail\App\Core\Mailer;
+use Simple\Mail\App\Core\Queue;
 use Simple\Mail\App\Model\MailLog;
 
 class MailController extends Controller
@@ -17,15 +18,25 @@ class MailController extends Controller
 
   public function index()
   {
-    $mailer = new Mailer();
-    $mailer->from('mrohmani96@gmail.com')
-            ->to('rohmanie55@gmail.com')
-            ->subject('test kirim email!')
-            ->body('mail-default', []);
-    die(var_dump($mailer->send()));
     $this->response([
       'status'=>'OK',
-      'data'=>$this->mail->all()
+      'data'=>$this->mail->paginate(10)
+    ]);
+  }
+
+  public function store(){
+    $queue = new Queue();
+
+    $queue->publish(MailHandler::MAIL_TOPIC, [
+      'from'=> $this->input('from'),
+      'to'=> $this->input('to'),
+      'subject'=> $this->input('subject'),
+      'body'=> $this->input('body')
+    ]);
+
+    return $this->response([
+      'status'=>'OK',
+      'message'=>'Successfull send mail!'
     ]);
   }
 }
