@@ -38,7 +38,7 @@ Here is a brief description of the technologies used:
 2. Clone the API service code from Github using the following command:
 
 ```
-git clone https://github.com/rohmanie55/6b2ded51d81a4403d8a4bd25fa1e57ee mail-apps
+git clone https://github.com/rohmanie55/6b2ded51d81a4403d8a4bd25fa1e57ee mail-apps.git
 ```
 
 3. Navigate to the directory containing the cloned code.
