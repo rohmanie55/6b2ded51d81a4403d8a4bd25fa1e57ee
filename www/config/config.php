@@ -19,6 +19,11 @@ function config($param=null) : array{
             'port' => getenv('RABBITMQ_PORT'),
             'username' => getenv('RABBITMQ_USER'),
             'password' => getenv('RABBITMQ_PASSWORD')
+        ],
+        'jwt' => [
+            'secret'=> getenv('JWT_SECRET'),
+            'client_id'=> getenv('JWT_CLIENT_ID'),
+            'client_secret'=> getenv('JWT_CLIENT_SECRET'),
         ]
     ];
 
